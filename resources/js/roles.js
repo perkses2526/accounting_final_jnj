@@ -3,6 +3,10 @@ $(document).ready(function () {
     set_table('/get_data_role/');
 });
 
+window.edit_role = async function(btn){
+
+}
+
 window.remove_role = async function (btn) {
     const confirmation = await question("Remove role?", "Are you sure you want to remove this role?");
     if (!confirmation) return;
@@ -25,8 +29,6 @@ window.remove_role = async function (btn) {
         terror('An unexpected error occurred.');
     }
 };
-
-
 
 window.store_role = async function (btn) {
     const confirmation = await question("Add role", "Are you sure you want to add this role?");

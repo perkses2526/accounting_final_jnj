@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade'); // Good practice for referential integrity
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('division_name');
-            $table->string('division_code')->unique(); // Good
+            $table->string('division_code')->unique();
             $table->unsignedBigInteger('create_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

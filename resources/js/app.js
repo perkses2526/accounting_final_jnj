@@ -3,6 +3,7 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import $ from 'jquery';
 import 'datatables.net-bs5'
+import 'selectize';
 
 window.Alpine = Alpine;
 
@@ -290,7 +291,7 @@ $(document).ready(function () {
             }
         })
     }
-    
+
     window.modalmd = function (title, body, btn = '', btnType = '') {
         setModalSize('xl:w-1/2', title, body, btn, btnType);
     };

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Company;
 use App\Models\Department;
 use App\Models\Division;
+use App\Models\TransactionList;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -148,6 +149,18 @@ class DatabaseSeeder extends Seeder
                 'division_id' => $department['division_id'],
                 'department_name' => $department['department_name'],
                 'department_code' => $department['department_code'],
+            ]);
+        }
+
+        $transaction_list = [
+            'sales',
+            'accounts payables',
+            'payroll'
+        ];
+
+        foreach ($transaction_list as $transaction) {
+            TransactionList::create([
+                'transaction_name' => $transaction
             ]);
         }
     }

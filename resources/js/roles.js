@@ -26,6 +26,7 @@ window.managePermissions = async function (roleId) {
             terror('Failed to load role data.');
         } else {
             modalxl('Manage roles permission', res);
+            $('#modaltb').DataTable();
         }
     } catch (error) {
         console.error('AJAX request failed:', error);

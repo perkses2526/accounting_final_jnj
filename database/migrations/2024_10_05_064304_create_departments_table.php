@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('division_id')->constrained('divisions')->onDelete('cascade'); // Good
+            $table->foreignId('division_id')->constrained('divisions')->onDelete('cascade'); 
             $table->string('department_name');
-            $table->string('department_code')->unique(); // Good
+            $table->string('department_code')->unique(); 
             $table->unsignedBigInteger('create_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

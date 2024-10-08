@@ -3,6 +3,7 @@
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\UserListController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user_list/', [UserListController::class, 'index'])->name('user_list.index');
     Route::get('get_data_user', [UserListController::class, 'get_data'])->name('user_list.get_data');
+
+    Route::get('approval_list/', [TicketsController::class, 'index'])->name('approval_list.index');
+    Route::get('transactionList/', [TicketsController::class, 'transaction_list'])->name('approval_list.transaction_list');
+    Route::get('create_tickets/', [TicketsController::class, 'create'])->name('approval_list.create');
+    Route::get('get_transaction_list_data/', [TicketsController::class, 'get_transaction_list_data'])->name('approval_list.get_transaction_list_data');
+    Route::post('store_tickets/', [TicketsController::class, 'store'])->name('approval_list.store');
 });
 
 require __DIR__ . '/auth.php';

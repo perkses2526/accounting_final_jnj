@@ -1,4 +1,4 @@
-<form id="roleForm" onsubmit="return false;" class="col-span-full">
+<form id="permissionForm" onsubmit="return false;" class="col-span-full">
     @csrf
     @method('PUT') 
     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300"><strong>Role

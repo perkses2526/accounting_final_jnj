@@ -24,10 +24,23 @@
 </head>
 
 <body class="font-sans antialiased">
+
+    <div
+        class="flex items-center justify-between px-4 py-2 lg:hidden bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+        <button id="toggleSidebar"
+            class="p-2 text-gray-600 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+        <span class="text-lg font-semibold">JnJ</span>
+    </div>
+
     <div class="flex min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
-        <div class="flex flex-col flex-1">
+        <div class="flex flex-col flex-1 min-h-screen overflow-hidden">
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white shadow flex justify-between items-center p-4">
@@ -46,12 +59,9 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="flex-1 p-6">
-                <div class="pt-1 pb-8">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                        @yield('content')
-                        {{-- {{ $slot ?? '' }} <!-- Use this to safely render the slot if it's not defined --> --}}
-                    </div>
+            <main class="flex-1 p-6 bg-gray-100 dark:bg-gray-900">
+                <div class="bg-white shadow-sm sm:rounded-lg p-5 m-3 h-full overflow-y-auto max-h-[calc(92vh-4rem)]">
+                    @yield('content')
                 </div>
             </main>
 
@@ -59,6 +69,7 @@
         </div>
     </div>
 </body>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"

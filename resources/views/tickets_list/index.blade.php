@@ -11,9 +11,9 @@
             <button id="TransactionListBtn" class="bg-yellow-500 text-white px-4 py-2 rounded">
                 Transaction list
             </button>
-            <button id="createTicketsBtn" class="bg-blue-500 text-white px-4 py-2 rounded ms-2">
+            {{-- <button id="createTicketsBtn" class="bg-blue-500 text-white px-4 py-2 rounded ms-2">
                 Create Tickets
-            </button>
+            </button> --}}
         </div>
 
         <table class="table table-striped table-bordered" id="maintb">

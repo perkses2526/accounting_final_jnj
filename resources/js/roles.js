@@ -2,12 +2,6 @@ $(document).ready(function () {
     // Initialize the data table on page load
     set_table('/get_data_role/');
 
-    // Use event delegation to handle button clicks in the table
-    $('#maintb').on('click', '.edit-role-btn', function () {
-        const roleId = $(this).data('role-id');
-        edit_role(roleId);
-    });
-
     $('#maintb').on('click', '.delete-role-btn', function () {
         const roleId = $(this).data('role-id');
         remove_role(roleId);

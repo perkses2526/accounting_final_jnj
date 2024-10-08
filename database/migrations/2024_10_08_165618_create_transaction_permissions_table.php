@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction_lists', function (Blueprint $table) {
-            $table->id();
-            $table->string('transaction_name');
+        Schema::create('transaction_permissions', function (Blueprint $table) {
+            $table->foreignId('transaction_id')->constrained('transaction_lists')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction_lists');
+        Schema::dropIfExists('transaction_permissions');
     }
 };

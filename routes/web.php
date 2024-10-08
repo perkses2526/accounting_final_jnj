@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\UserListController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -41,6 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('create_tickets/', [TicketsController::class, 'create'])->name('approval_list.create');
     Route::get('get_transaction_list_data/', [TicketsController::class, 'get_transaction_list_data'])->name('approval_list.get_transaction_list_data');
     Route::post('store_tickets/', [TicketsController::class, 'store'])->name('approval_list.store');
+    Route::get('get_data_tickets/', [TicketsController::class, 'get_data'])->name('approval_list.get_data');
+    Route::get('show_ticket/{tickets}/', [TicketsController::class, 'show'])->name('approval_list.show');
+    Route::put('update_ticket/{tickets}/', [TicketsController::class, 'update'])->name('approval_list.update');
+
+
+    Route::get('fetch_numbers/', [DashboardController::class, 'fetch_numbers'])->name('dashboard.fetch_numbers');
 });
 
 require __DIR__ . '/auth.php';

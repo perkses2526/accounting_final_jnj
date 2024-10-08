@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-    <form id="roleForm" onsubmit="return false;" class="col-span-full">
+    <form id="ticketForm" onsubmit="return false;" class="col-span-full">
 
         <label for="user_code" class="block text-sm font-medium text-gray-700 dark:text-gray-300"><strong>User
                 code</strong></label>

@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
     <!-- Role Form -->
-    <form id="roleForm" onsubmit="return false;" class="col-span-full">
+    <form id="permissionForm" onsubmit="return false;" class="col-span-full">
         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300"><strong>Permission
                 Name</strong></label>
         <input type="text" name="name" id="name" placeholder="Enter Permission Name"

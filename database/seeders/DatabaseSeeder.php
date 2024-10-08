@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Company;
 use App\Models\Department;
 use App\Models\Division;
+use App\Models\Tickets;
 use App\Models\TransactionList;
+use App\Models\TransactionPermission;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -81,10 +83,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $adminUser = User::factory()->create([
-            'last_name' => 'Doe',
-            'first_name' => 'John',
+            'last_name' => 'Admin',
+            'first_name' => 'Tony',
             'middle_name' => NULL,
-            'email' => 'admin_user@gmail.com',
+            'email' => 'tony.admin@gmail.com',
+            'password' => bcrypt('admin123'),
+            'status' => 'Active'
+        ]);
+
+        $adminUser2 = User::factory()->create([
+            'last_name' => 'Admin',
+            'first_name' => 'JC',
+            'middle_name' => NULL,
+            'email' => 'jc_admin@gmail.com',
+            'password' => bcrypt('admin123'),
+            'status' => 'Active'
+        ]);
+
+        $adminUser3 = User::factory()->create([
+            'last_name' => 'Admin',
+            'first_name' => 'Paulo',
+            'middle_name' => NULL,
+            'email' => 'paulo_admin@gmail.com',
             'password' => bcrypt('admin123'),
             'status' => 'Active'
         ]);
@@ -110,6 +130,8 @@ class DatabaseSeeder extends Seeder
         // Assign roles to users using Spatie's assignRole method
         $superAdminUser->assignRole('superadmin');
         $adminUser->assignRole('admin');
+        $adminUser2->assignRole('admin');
+        $adminUser3->assignRole('admin');
         $editorUser->assignRole('editor');
         $viewerUser->assignRole('viewer');
 
@@ -163,5 +185,27 @@ class DatabaseSeeder extends Seeder
                 'transaction_name' => $transaction
             ]);
         }
+
+        $transaction_permissions = [
+            ['transaction_id' => 1, 'user_id' => 1],
+            ['transaction_id' => 2, 'user_id' => 1],
+            ['transaction_id' => 3, 'user_id' => 1],
+            ['transaction_id' => 1, 'user_id' => 2],
+            ['transaction_id' => 2, 'user_id' => 2],
+            ['transaction_id' => 2, 'user_id' => 3],
+            ['transaction_id' => 1, 'user_id' => 3],
+            ['transaction_id' => 2, 'user_id' => 3],
+            ['transaction_id' => 3, 'user_id' => 3],
+            ['transaction_id' => 1, 'user_id' => 4],
+            ['transaction_id' => 2, 'user_id' => 4],
+            ['transaction_id' => 3, 'user_id' => 4],
+            ['transaction_id' => 3, 'user_id' => 5],
+        ];
+
+        foreach ($transaction_permissions as $transaction_permission) {
+            TransactionPermission::create($transaction_permission);
+        }
+
+        Tickets::factory()->count(50)->create();
     }
 }

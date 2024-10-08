@@ -14,6 +14,14 @@ window.jQuery = $;
 window.Alpine = Alpine;
 
 $(document).ready(function () {
+    document.getElementById('toggleSidebar').onclick = function () {
+        document.getElementById('mobileSidebar').classList.toggle('hidden');
+    };
+
+    document.getElementById('closeSidebar').onclick = function () {
+        document.getElementById('mobileSidebar').classList.add('hidden');
+    };
+
     var currentUrl = window.location.href;
     var navLinks = document.getElementsByClassName("nav-link");
     for (var i = 0; i < navLinks.length; i++) {
@@ -27,6 +35,12 @@ $(document).ready(function () {
                 parentUl.previousElementSibling.classList.remove("collapsed");
             }
             break;
+        }
+    }
+
+    window.setselect = async function (sel) {
+        if ($(sel).length) {
+            $(sel).selectize();
         }
     }
 
@@ -202,48 +216,6 @@ $(document).ready(function () {
             return "";
         }
     };
-
-
-    /* window.ajax = async function (url, formData = null, type = "GET") {
-        try {
-            const response = await $.ajax({
-                url: url,
-                type: type,
-                data: formData, // Use formData directly
-                processData: type ? true : false, // Process data based on request type
-                contentType: type ? 'application/x-www-form-urlencoded' : false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                dataType: 'json' // Ensure the response is treated as JSON
-            });
-            return response; // Return the response directly
-        } catch (error) {
-            console.error('AJAX Error:', error.statusText);
-            return null; // Return null if there's an error
-        }
-    }
- */
-    window.ajaxfortb = async function (url, formData = null, type) {
-        try {
-            const response = await $.ajax({
-                url: url,
-                type: type,
-                data: formData, // Use formData directly
-                processData: type === 'GET' ? true : false, // Process data based on request type
-                contentType: type === 'GET' ? 'application/x-www-form-urlencoded' : false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                dataType: 'json' // Ensure the response is treated as JSON
-            });
-            return response; // Return the response directly
-        } catch (error) {
-            console.error('AJAX Error:', error.statusText);
-            return null; // Return null if there's an error
-        }
-    }
-
 
     window.question = function (title, text) {
         return new Promise((resolve) => {

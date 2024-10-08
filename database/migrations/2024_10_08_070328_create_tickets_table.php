@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('date_status_updated')->nullable();;
             $table->string('reason_if_denied')->nullable();
             $table->date('expiry_date_time')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

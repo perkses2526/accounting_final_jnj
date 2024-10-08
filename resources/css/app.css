@@ -1,8 +1,9 @@
+@import 'selectize/dist/css/selectize.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'selectize/dist/css/selectize.css';
-@import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 /* Automatic table styling */
 @layer utilities {

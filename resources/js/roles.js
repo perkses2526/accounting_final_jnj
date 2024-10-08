@@ -1,22 +1,45 @@
-
 $(document).ready(function () {
+    // Initialize the data table on page load
     set_table('/get_data_role/');
+
+    // Use event delegation to handle button clicks in the table
+    $('#maintb').on('click', '.edit-role-btn', function () {
+        const roleId = $(this).data('role-id');
+        edit_role(roleId);
+    });
+
+    $('#maintb').on('click', '.delete-role-btn', function () {
+        const roleId = $(this).data('role-id');
+        remove_role(roleId);
+    });
+
+    $('#maintb').on('click', '.manage-permission-btn', function () {
+        const roleId = $(this).data('role-id');
+        managePermissions(roleId);
+    });
 });
 
-window.edit_role = async function(btn){
+window.managePermissions = async function (roleId) {
+    try {
+        const res = await ajax(`/view_permission_role/${roleId}`);
+        if (res.error) {
+            terror('Failed to load role data.');
+        } else {
+            modalxl('Manage roles permission', res);
+        }
+    } catch (error) {
+        console.error('AJAX request failed:', error);
+        alert('An error occurred while fetching role data.');
+    }
+};
 
-}
 
-window.remove_role = async function (btn) {
+window.remove_role = async function (roleId) {
     const confirmation = await question("Remove role?", "Are you sure you want to remove this role?");
     if (!confirmation) return;
 
-    const role_id = $(btn).closest('tr').find('td:eq(0)').text();
-
     try {
-        const res = await ajax(`/role/${role_id}`, '', 'DELETE');
-
-        // Check for success in response
+        const res = await ajax(`/role/${roleId}`, '', 'DELETE');
         if (res.success) {
             tsuccess('Role has been removed successfully.');
             set_table('/get_data_role/');
@@ -34,11 +57,10 @@ window.store_role = async function (btn) {
     const confirmation = await question("Add role", "Are you sure you want to add this role?");
     if (!confirmation) return;
 
-    var form = $(btn).closest('#modal').find('form')[0];
+    const form = $(btn).closest('#modal').find('form')[0];
+    const formData = new FormData(form);
 
-    var formData = new FormData(form);
-
-    var res = await ajax('/store_role/', formData, 'POST');
+    const res = await ajax('/store_role/', formData, 'POST');
 
     if (res.success) {
         tsuccess('Role added successfully');
@@ -50,7 +72,6 @@ window.store_role = async function (btn) {
 };
 
 window.addrole = async function () {
-    var res = await ajax('/create_role/');
+    const res = await ajax('/create_role/');
     modalmd('Add new role', res, "store_role(this)");
-}
-
+};

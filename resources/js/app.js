@@ -167,18 +167,18 @@ $(document).ready(function () {
         });
     }
 
-    window.ajax = async function (url, formData = null, type = 'GET') {
+    window.ajax = async function (url, formData = null, method = 'GET') {
         try {
             const options = {
                 url: url,
-                type: type,
+                type: method,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             };
 
-            // Handle data and content type for POST/DELETE requests
-            if (type === 'POST' || type === 'DELETE') {
+            // Handle data and content type for methods that send data to the server
+            if (method === 'POST' || method === 'PUT' || method === 'PATCH' || method === 'DELETE') {
                 options.data = formData ? new URLSearchParams(formData).toString() : null;
                 options.processData = false;
                 options.contentType = 'application/x-www-form-urlencoded';
@@ -197,10 +197,11 @@ $(document).ready(function () {
                 return response; // Already an object
             }
         } catch (error) {
-            // console.log('Error: ' + error.statusText + ' - ' + (error.responseText || error.responseJSON || 'No additional error info'));
+            console.error('Error: ' + error.statusText + ' - ' + (error.responseText || error.responseJSON || 'No additional error info'));
             return "";
         }
     };
+
 
     /* window.ajax = async function (url, formData = null, type = "GET") {
         try {
@@ -289,6 +290,7 @@ $(document).ready(function () {
             }
         })
     }
+    
     window.modalmd = function (title, body, btn = '', btnType = '') {
         setModalSize('xl:w-1/2', title, body, btn, btnType);
     };

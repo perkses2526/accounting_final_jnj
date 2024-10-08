@@ -64,27 +64,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
     integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<!-- Modal Background -->
 <div id="modalBackground" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
 
-<div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-    <div id="modalSize" class="bg-white rounded-lg shadow-lg relative">
-        <!-- Modal Header -->
-        <div class="p-4 border-b">
-            <h2 class="text-xl font-semibold" id="modalTitle"></h2>
-            <button id="closeModal" class="absolute top-5 right-5 text-gray-500 hover:text-gray-700">&times;</button>
-        </div>
-
-        <!-- Modal Body -->
-        <div class="p-4" id="modalBody"></div>
-
-        <!-- Modal Footer (Buttons) -->
-        <div class="p-4 border-t flex justify-end space-x-3">
-            <div id="btn_submit"></div>
-            <button id="closeModal2" class="btn btn-warning">Close</button>
+<div id="modal"
+    class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div id="modalSize" class="bg-white rounded-lg shadow-lg relative">
+                <div class="p-4 border-b">
+                    <h2 class="text-xl font-semibold" id="modalTitle"></h2>
+                    <button id="closeModal"
+                        class="absolute top-5 right-5 text-gray-500 hover:text-gray-700">&times;</button>
+                </div>
+                <div class="p-4" id="modalBody">
+                    <!-- Content goes here -->
+                </div>
+                <div class="flex justify-end p-4 border-t space-x-3">
+                    <div id="btn_submit"></div>
+                    <button id="closeModal2" class="btn btn-danger">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 </html>

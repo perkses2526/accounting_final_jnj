@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('get_data_user', [UserListController::class, 'get_data'])->name('user_list.get_data');
 
     Route::get('approval_list/', [TicketsController::class, 'index'])->name('approval_list.index');
+    Route::get('multiple_ticket_updates/', [TicketsController::class, 'multiple_updates'])->name('approval_list.multiple_updates');
     Route::get('transactionList/', [TicketsController::class, 'transaction_list'])->name('approval_list.transaction_list');
     Route::get('create_tickets/', [TicketsController::class, 'create'])->name('approval_list.create');
     Route::get('get_transaction_list_data/', [TicketsController::class, 'get_transaction_list_data'])->name('approval_list.get_transaction_list_data');
@@ -45,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('get_data_tickets/', [TicketsController::class, 'get_data'])->name('approval_list.get_data');
     Route::get('show_ticket/{tickets}/', [TicketsController::class, 'show'])->name('approval_list.show');
     Route::put('update_ticket/{tickets}/', [TicketsController::class, 'update'])->name('approval_list.update');
-
+    Route::post('update_tickets_status', [TicketsController::class, 'update_tickets_status'])->name('approval_list.update_tickets_status');
 
     Route::get('fetch_numbers/', [DashboardController::class, 'fetch_numbers'])->name('dashboard.fetch_numbers');
 });

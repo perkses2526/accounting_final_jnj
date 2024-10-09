@@ -11,7 +11,7 @@ class UserListController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->hasRole('superadmin')) {
+        if (auth()->user()->hasRole('superadmin') || auth()->user()->hasRole('admin')) {
             return view('user_list.index');
         } else {
             abort(403, 'Unauthorized'); // Or redirect to another page

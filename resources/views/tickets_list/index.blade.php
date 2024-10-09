@@ -8,6 +8,11 @@
         </x-slot>
         <!-- Create Role Button -->
         <div class="flex justify-end items-center mb-4">
+            <div class="update_div">
+                <button id="MultipleUpdatesBtn" class="bg-blue-500 text-white px-4 py-2 rounded me-2">
+                    Multiple updates
+                </button>
+            </div>
             <button id="TransactionListBtn" class="bg-yellow-500 text-white px-4 py-2 rounded">
                 Transaction list
             </button>

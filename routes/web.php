@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
     Route::get('accounting/', [AccountingController::class, 'index'])->name('accounting.index');
     Route::get('get_div_data/{id}', [AccountingController::class, 'get_div_data'])->name('accounting.get_div_data');
     Route::get('get_dept_data/{id}', [AccountingController::class, 'get_dept_data'])->name('accounting.get_dept_data');
+    Route::get('get_account_data/{company_code}/{division_code}/{department_code}', [AccountingController::class, 'get_account_data'])->name('accounting.get_account_data');
+
+    // /get_account_data/${company_code}/${division_code}/${department_code}
 });
 
 

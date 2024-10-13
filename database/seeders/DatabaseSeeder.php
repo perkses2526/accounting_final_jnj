@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccountingData;
 use App\Models\Company;
 use App\Models\Department;
 use App\Models\Division;
@@ -9,10 +10,12 @@ use App\Models\Tickets;
 use App\Models\TransactionList;
 use App\Models\TransactionPermission;
 use App\Models\User;
+use Database\Factories\AccountingDataFactory;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -207,5 +210,6 @@ class DatabaseSeeder extends Seeder
         }
 
         Tickets::factory()->count(50)->create();
+        AccountingData::factory()->count(200)->create();
     }
 }

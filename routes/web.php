@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('fetch_numbers/', [DashboardController::class, 'fetch_numbers'])->name('dashboard.fetch_numbers');
     Route::get('accounting/', [AccountingController::class, 'index'])->name('accounting.index');
+    Route::get('get_div_data/{id}', [AccountingController::class, 'get_div_data'])->name('accounting.get_div_data');
+    Route::get('get_dept_data/{id}', [AccountingController::class, 'get_dept_data'])->name('accounting.get_dept_data');
 });
+
 
 require __DIR__ . '/auth.php';

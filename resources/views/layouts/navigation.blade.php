@@ -35,6 +35,15 @@
             </svg>
             <span class="mx-4 font-medium">Approval List</span>
         </a>
+
+        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            href="{{ route('accounting.index') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="currentColor"
+                    d="M17 5.5A2.5 2.5 0 0 0 14.5 3h-9A2.5 2.5 0 0 0 3 5.5v9A2.5 2.5 0 0 0 5.5 17H11v-1H8v-3h3v-1H8V8h4v.5c.29-.219.63-.375 1-.45V8h4zm-13 9V13h3v3H5.5l-.144-.007A1.5 1.5 0 0 1 4 14.5M12 7H8V4h4zm1-3h1.5l.145.007A1.5 1.5 0 0 1 16 5.5V7h-3zM4 7V5.5l.007-.144A1.5 1.5 0 0 1 5.5 4H7v3zm3 1v4H4V8zm5 2.5A1.5 1.5 0 0 1 13.5 9h4a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5zm2.5 2.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1m3.5.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .5-.5M14.5 15h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1m3.5.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .5-.5M14.5 17h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1m3.5.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .5-.5M13.5 10a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+            </svg>
+            <span class="mx-4 font-medium">Accounting Listing</span>
+        </a>
         @if (auth()->user()->hasRole('superadmin'))
             <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('roles.index') }}">
@@ -99,22 +108,34 @@
             <span class="mx-4 font-medium">Approval List</span>
         </a>
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-            href="{{ route('roles.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
-                <path fill="currentColor"
-                    d="M1664 1280h256v640h-640v-640h256v-256H384v256h256v640H0v-640h256V896h640V640H640V0h640v640h-256v256h640zM768 128v384h384V128zM512 1792v-384H128v384zm1280 0v-384h-384v384z" />
-            </svg>
-            <span class="mx-4 font-medium">Roles</span>
-        </a>
+        @if (auth()->user()->hasRole('superadmin'))
+            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                href="{{ route('roles.index') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
+                    <path fill="currentColor"
+                        d="M1664 1280h256v640h-640v-640h256v-256H384v256h256v640H0v-640h256V896h640V640H640V0h640v640h-256v256h640zM768 128v384h384V128zM512 1792v-384H128v384zm1280 0v-384h-384v384z" />
+                </svg>
+                <span class="mx-4 font-medium">Roles</span>
+            </a>
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-            href="{{ route('user_list.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
-                <path fill="currentColor"
-                    d="M1280 1024h768v512h-768v-512zm-512 0H0v512h768v-512zM640 640h640v-640H640v640zm1280 640h-768v512h768v-512zm-512-640H0v640h768V640zM0 1792h640v-512H0v512z" />
-            </svg>
-            <span class="mx-4 font-medium">Users</span>
-        </a>
+            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                href="{{ route('permission.index') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
+                    <path fill="currentColor"
+                        d="M2048 1573v475h-512v-256h-256v-256h-256v-207q-74 39-155 59t-165 20q-97 0-187-25t-168-71t-142-110t-111-143t-71-168T0 704q0-97 25-187t71-168t110-142T349 96t168-71T704 0q97 0 187 25t168 71t142 110t111 143t71 168t25 187q0 51-8 101t-23 98zm-128 54l-690-690q22-57 36-114t14-119q0-119-45-224t-124-183t-183-123t-224-46q-119 0-224 45T297 297T174 480t-46 224q0 119 45 224t124 183t183 123t224 46q97 0 190-33t169-95h89v256h256v256h256v256h256zM512 384q27 0 50 10t40 27t28 41t10 50q0 27-10 50t-27 40t-41 28t-50 10q-27 0-50-10t-40-27t-28-41t-10-50q0-27 10-50t27-40t41-28t50-10" />
+                </svg>
+                <span class="mx-4 font-medium">Permission</span>
+            </a>
+        @endif
+        @if (auth()->user()->hasRole('superadmin') || auth()->user()->hasRole('admin'))
+            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                href="{{ route('user_list.index') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
+                    <path fill="currentColor"
+                        d="M1280 1024h768v512h-768v-512zm-512 0H0v512h768v-512zM640 640h640v-640H640v640zm1280 640h-768v512h768v-512zm-512-640H0v640h768V640zM0 1792h640v-512H0v512z" />
+                </svg>
+                <span class="mx-4 font-medium">Users</span>
+            </a>
+        @endif
     </nav>
 </aside>

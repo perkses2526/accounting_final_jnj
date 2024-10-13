@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('update_tickets_status', [TicketsController::class, 'update_tickets_status'])->name('approval_list.update_tickets_status');
 
     Route::get('fetch_numbers/', [DashboardController::class, 'fetch_numbers'])->name('dashboard.fetch_numbers');
+    Route::get('accounting/', [AccountingController::class, 'index'])->name('accounting.index');
 });
 
 require __DIR__ . '/auth.php';

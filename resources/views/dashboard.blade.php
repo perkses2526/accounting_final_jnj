@@ -1,9 +1,7 @@
 <x-app-layout>
     @section('content')
         <x-slot name="header">
-            <h2 class="font-semibold text-2xl text-gray-800 leading-tight dark:text-gray-200">
-                {{ __('Dashboard') }}
-            </h2>
+            {{ __('Dashboard') }}
         </x-slot>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">

@@ -2,7 +2,7 @@
     <!-- The only way to do great work is to love what you do. - Steve Jobs -->
     @section('content')
         <x-slot name="header">
-            Manage Approvals
+                {{ __('Accounting Listing') }}
         </x-slot>
         <!-- Create Role Button -->
         <div class="flex justify-end items-center mb-4">
@@ -26,6 +26,6 @@
             </tbody>
         </table>
 
-        @vite(['resources/js/approvals.js'])
+        {{-- @vite(['resources/js/approvals.js']) --}}
     @endsection
 </x-app-layout>

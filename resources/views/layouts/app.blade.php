@@ -45,7 +45,9 @@
             @isset($header)
                 <header class="bg-white shadow flex justify-between items-center p-4">
                     <div>
-                        {{ $header }}
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            {{ ucwords($header) }}
+                        </h2>
                     </div>
                     <div>
                         <form method="POST" action="{{ route('logout') }}" class="inline">

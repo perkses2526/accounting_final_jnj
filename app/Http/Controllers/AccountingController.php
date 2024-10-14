@@ -16,7 +16,21 @@ class AccountingController extends Controller
         }
     }
 
-    public function get_account_data() {}
+    public function get_account_data($company_code, $division_code, $department_code)
+    {
+        $accountData = DB::table('accounting_data as a')
+            ->join('transaction_lists as t', 't.id', '=', 'a.source') // Correctly using 'a.source' as the join condition
+            ->where('a.company_code', $company_code)
+            ->where('a.division_code', $division_code)
+            ->where('a.department_code', $department_code)
+            ->select('a.*', 't.transaction_name') // Select fields from both tables as needed
+            ->get();
+
+        return response()->json($accountData);
+    }
+
+
+
 
     public function get_div_data($companyCode)
     {

@@ -25,7 +25,24 @@ $(document).ready(function () {
         setaccount_data($(this));
     });
 
+    // Tab click event listeners
+    $('#balanceSheetTab').on('click', () => handleTabClick('balance-sheet'));
+    $('#incomeStatementTab').on('click', () => handleTabClick('income-statement'));
+    $('#trialBalanceTab').on('click', () => handleTabClick('trial-balance'));
 });
+
+// Function to handle tab switching
+function handleTabClick(tabId) {
+    // Hide all tab contents
+    $('.tab-content').addClass('hidden');
+
+    // Show the selected tab content
+    $(`#${tabId}`).removeClass('hidden');
+
+    // Update tab button styles
+    $('.tab-button').removeClass('bg-blue-500 text-white').addClass('bg-gray-200 text-gray-700');
+    $(`#${tabId}Tab`).removeClass('bg-gray-200 text-gray-700').addClass('bg-blue-500 text-white');
+}
 
 window.setdiv = async function (select) {
     const div_data = await ajax(`/get_div_data/${$(select).val()}`);
@@ -40,10 +57,36 @@ window.setdept = async function (select) {
 }
 
 window.setaccount_data = async function (select) {
-
-    // $('#company_code, #division_code, #department_code');
-    company_code = $('#company_code').val();
-    division_code = $('#division_code').val();
-    department_code = $('#department_code').val();
+    const company_code = $('#company_code').val();
+    const division_code = $('#division_code').val();
+    const department_code = $('#department_code').val();
     const account_data = await ajax(`/get_account_data/${company_code}/${division_code}/${department_code}`);
+
+    // Clear existing data before adding new content
+    $('#balance-sheet-data').empty();
+    $('#income-statement-data').empty();
+    $('#trial-balance-data').empty();
+
+    // Separate data into Balance Sheet, Income Statement, and Trial Balance categories
+    account_data.forEach(item => {
+        const row = `<tr>
+            <td class="border px-4 py-2">${item.charts_of_accounts}</td>
+            <td class="border px-4 py-2">${item.debit ? item.debit : '-'}</td>
+            <td class="border px-4 py-2">${item.credit ? item.credit : '-'}</td>
+            <td class="border px-4 py-2">${item.amount}</td>
+        </tr>`;
+
+        // Populate Balance Sheet
+        if (item.class === 'asset' || item.class === 'liability' || item.class === 'equity') {
+            $('#balance-sheet-data').append(row);
+        }
+
+        // Populate Income Statement
+        if (item.class === 'revenue' || item.class === 'expense') {
+            $('#income-statement-data').append(row);
+        }
+
+        // Populate Trial Balance (Include all accounts)
+        $('#trial-balance-data').append(row);
+    });
 }

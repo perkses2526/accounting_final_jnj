@@ -232,10 +232,11 @@ class TicketsController extends Controller
      */
     public function show(Tickets $tickets)
     {
-        // Fetch the ticket data along with the transaction name from the join table
+        // Fetch the ticket data along with the transaction name and approved_by from the join tables
         $ticketsData = DB::table('tickets as t')
-            ->select('*') // Get all columns from both tables
-            ->leftJoin('transaction_lists as tl', 'tl.id', '=', 't.transaction_id')
+            ->select('t.*', 'tl.transaction_name', 'u.first_name', 'u.last_name') // Select required fields
+            ->leftJoin('users as u', 'u.id', '=', 't.approved_by') // Join with users to get the approved_by name
+            ->leftJoin('transaction_lists as tl', 'tl.id', '=', 't.transaction_id') // Join with transaction_lists
             ->where('t.id', $tickets->id) // Filter by the specific ticket ID
             ->first(); // Get the single result instead of a collection
 
@@ -245,7 +246,7 @@ class TicketsController extends Controller
         }
 
         // Pass the fetched ticket data to the view
-        return view('tickets_list.show', compact('tickets'));
+        return view('tickets_list.show', compact('ticketsData'));
     }
 
 

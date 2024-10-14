@@ -1,15 +1,14 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 p-3">
     <form id="ticketForm" onsubmit="return false;" class="col-span-full">
         <!-- User Code -->
-
-        <input type="hidden" name="id" value="{{ $tickets->id }}">
+        <input type="hidden" name="id" value="{{ $ticketsData->id }}">
 
         <div class="mb-4">
             <label for="user_code" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 <strong>User Code</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->user_code ?? 'No input' }}
+                {{ $ticketsData->user_code ?? 'No input' }}
             </p>
         </div>
 
@@ -19,7 +18,7 @@
                 <strong>Date Entered</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->date_entered ?? 'No input' }}
+                {{ $ticketsData->date_entered ?? 'No input' }}
             </p>
         </div>
 
@@ -29,7 +28,7 @@
                 <strong>Transaction Type</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->transaction_name ?? 'No input' }}
+                {{ $ticketsData->transaction_name ?? 'No input' }}
             </p>
         </div>
 
@@ -39,7 +38,7 @@
                 <strong>Reference No.</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->reference_no ?? 'No input' }}
+                {{ $ticketsData->reference_no ?? 'No input' }}
             </p>
         </div>
 
@@ -49,7 +48,7 @@
                 <strong>Remarks</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->remarks ?? 'No input' }}
+                {{ $ticketsData->remarks ?? 'No input' }}
             </p>
         </div>
 
@@ -59,10 +58,41 @@
                 <strong>Expiry Date</strong>
             </label>
             <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
-                {{ $tickets->expiry_date_time ?? 'No expiry date' }}
+                {{ $ticketsData->expiry_date_time ?? 'No expiry date' }}
             </p>
         </div>
-        @if ((is_null($tickets->expiry_date_time) || $tickets->expiry_date_time > now()) && is_null($tickets->status))
+
+        @if ($ticketsData->status === 'Approved')
+            <div class="mb-4">
+                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-green-800">
+                    This ticket has been approved.
+                </p>
+            </div>
+            <hr>
+            <div class="mb-4">
+                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
+                    Approved by: {{ $ticketsData->first_name }} {{ $ticketsData->last_name }}
+                </p>
+            </div>
+        @elseif ($ticketsData->status === 'Denied')
+            <div class="mb-4">
+                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-red-800">
+                    Sorry but this ticket has been denied. Please see details below
+                    <hr>
+                    Reason for denied request: {{ $ticketsData->reason_if_denied }}
+                </p>
+                <hr>
+                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300">
+                    Denied by: {{ $ticketsData->first_name }} {{ $ticketsData->last_name }}
+                </p>
+            </div>
+        @elseif ($ticketsData->expiry_date_time && $ticketsData->expiry_date_time <= now())
+            <div class="mb-4">
+                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-red-800">
+                    Sorry, but this ticket has already expired.
+                </p>
+            </div>
+        @else
             <div class="mb-4">
                 <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     <strong>Set Status</strong>
@@ -73,26 +103,6 @@
                     <option value="Approved">Approved Request</option>
                     <option value="Denied">Deny Request</option>
                 </select>
-            </div>
-        @elseif($tickets->status == 'Approved')
-            <div class="mb-4">
-                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-green-800">
-                    This ticket has been approved.
-                </p>
-            </div>
-        @elseif($tickets->status == 'Denied')
-            <div class="mb-4">
-                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-red-800">
-                    Sorry but this ticket has been denied. Please see details below
-                    <hr>
-                    {{ $tickets->reason_if_denied }}
-                </p>
-            </div>
-        @else
-            <div class="mb-4">
-                <p class="mt-1 text-lg text-gray-800 dark:text-gray-300 text-red-800">
-                    Sorry, but this ticket has already expired.
-                </p>
             </div>
         @endif
 

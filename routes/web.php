@@ -38,7 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::get('user_list/', [UserListController::class, 'index'])->name('user_list.index');
     Route::get('get_data_user', [UserListController::class, 'get_data'])->name('user_list.get_data');
 
-    Route::get('approval_list/', [TicketsController::class, 'index'])->name('approval_list.index');
+    // Route to handle the main list without a status parameter
+    Route::get('approval_list', [TicketsController::class, 'index'])->name('approval_list.index');
+    Route::get('approval_list/{status}', [TicketsController::class, 'index'])->name('approval_list.status');
+
     Route::get('multiple_ticket_updates/', [TicketsController::class, 'multiple_updates'])->name('approval_list.multiple_updates');
     Route::get('transactionList/', [TicketsController::class, 'transaction_list'])->name('approval_list.transaction_list');
     Route::get('create_tickets/', [TicketsController::class, 'create'])->name('approval_list.create');

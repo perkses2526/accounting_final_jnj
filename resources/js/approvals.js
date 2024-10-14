@@ -52,6 +52,26 @@ $(document).ready(function () {
     });
 
 
+    setTimeout(() => {
+        const currentUrl = window.location.href;
+        const statusMatch = currentUrl.match(/approval_list\/(\w+)/);
+        const status = statusMatch ? statusMatch[1] : null; // This will be 'pending' or whatever status is in the URL
+
+        console.log(status);
+
+        // Check if the status is found and set it as the value of the input
+        if (status) {
+            const statusInput = $('#maintb input[placeholder="Search Status"]');
+
+            // Set the value
+            statusInput.val(status).trigger("change");
+
+            // Trigger the input event to simulate user typing
+
+        }
+    }, 1000);
+
+
 });
 
 // Function to start the auto-refresh interval

@@ -6,7 +6,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
             <!-- Pending Card -->
-            <div class="flex items-center p-4 bg-yellow-100 rounded-lg shadow-md dark:bg-yellow-800">
+            <a href="approval_list/pending" class="flex items-center p-4 bg-yellow-100 rounded-lg shadow-md dark:bg-yellow-800">
                 <div class="flex items-center justify-center w-16 h-16 bg-yellow-200 rounded-full dark:bg-yellow-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"
                         class="text-yellow-600 dark:text-yellow-300">
@@ -18,10 +18,10 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Pending</h3>
                     <p class="text-2xl font-bold text-gray-700 dark:text-gray-200" id="PendingNumbers"></p>
                 </div>
-            </div>
+            </a>
 
             <!-- Approved Card -->
-            <div class="flex items-center p-4 bg-green-100 rounded-lg shadow-md dark:bg-green-800">
+            <a href="approval_list/approved" class="flex items-center p-4 bg-green-100 rounded-lg shadow-md dark:bg-green-800">
                 <div class="flex items-center justify-center w-16 h-16 bg-green-200 rounded-full dark:bg-green-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 48 48">
                         <defs>
@@ -40,10 +40,10 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Approved</h3>
                     <p class="text-2xl font-bold text-gray-700 dark:text-gray-200" id="ApprovedNumbers"></p>
                 </div>
-            </div>
+            </a>
 
             <!-- Denied Card -->
-            <div class="flex items-center p-4 bg-red-100 rounded-lg shadow-md dark:bg-red-800">
+            <a href="approval_list/denied" class="flex items-center p-4 bg-red-100 rounded-lg shadow-md dark:bg-red-800">
                 <div class="flex items-center justify-center w-16 h-16 bg-red-200 rounded-full dark:bg-red-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" stroke-dasharray="12" stroke-dashoffset="12"
@@ -57,8 +57,10 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Denied</h3>
                     <p class="text-2xl font-bold text-gray-700 dark:text-gray-200" id="DeniedNumbers"></p>
                 </div>
-            </div>
-            <div class="flex items-center p-4 bg-gray-100 rounded-lg shadow-md dark:bg-gray-800">
+            </a>
+
+            <!-- Expired Card -->
+            <a href="approval_list/expired" class="flex items-center p-4 bg-gray-100 rounded-lg shadow-md dark:bg-gray-800">
                 <div class="flex items-center justify-center w-16 h-16 bg-gray-200 rounded-full dark:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor"
@@ -69,7 +71,7 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Expired</h3>
                     <p class="text-2xl font-bold text-gray-700 dark:text-gray-200" id="ExpiredNumbers"></p>
                 </div>
-            </div>
+            </a>
         </div>
         @vite(['resources/js/dashboard.js'])
     @endsection

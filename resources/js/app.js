@@ -21,8 +21,7 @@ $(document).ready(function () {
     document.getElementById('closeSidebar').onclick = function () {
         document.getElementById('mobileSidebar').classList.add('hidden');
     };
-    // Add 'active' class to clicked nav item and remove from others
-    // Add 'active' class to clicked nav item and remove from others
+    
     document.querySelectorAll('.nav-item').forEach(link => {
         link.addEventListener('click', function () {
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));

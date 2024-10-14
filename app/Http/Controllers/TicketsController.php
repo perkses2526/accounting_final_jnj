@@ -98,6 +98,49 @@ class TicketsController extends Controller
         return response()->json(['data' => $tickets]); // Ensure correct JSON response
     }
 
+    public function statusList($status)
+    {
+        // Get the currently authenticated user's ID
+        $userId = auth()->id();
+
+        $tickets = DB::table('tickets as t')
+            ->select(
+                't.id',
+                't.user_code',
+                't.date_entered',
+                'tl.transaction_name',
+                't.reference_no',
+                't.remarks',
+                't.expiry_date_time',
+                DB::raw("IF(t.status IS NULL AND (t.expiry_date_time IS NULL OR t.expiry_date_time > NOW()), '<span class=\"text-warning\">Pending</span>', 
+                IF(t.expiry_date_time IS NOT NULL AND t.expiry_date_time <= NOW(), '<span class=\"text-red-600\">Expired</span>', 
+                IF(t.status = 'Approved', '<span class=\"text-green-600\">Approved</span>', 
+                CONCAT('<span class=\"text-red-600\">', t.status, '</span>')) 
+            )) AS status"),
+                DB::raw("CONCAT('<button class=\"btn btn-sm m-1 btn-info view-ticket-details\" data-ticket-id=\"', t.id, '\" >View details</button>') AS action")
+            )
+            ->leftJoin('transaction_lists as tl', 'tl.id', '=', 't.transaction_id')
+            ->join('transaction_permissions as tp', 'tp.transaction_id', '=', 't.transaction_id') // Join with transaction_permissions
+            ->where('tp.user_id', '=', $userId) // Filter based on the current user's assigned transactions
+            ->where(function ($query) use ($status) {
+                // Adjust the logic to filter by status
+                if ($status === 'Pending') {
+                    $query->whereNull('t.status')
+                        ->where(function ($query) {
+                            $query->whereNull('t.expiry_date_time')
+                                ->orWhere('t.expiry_date_time', '>', now());
+                        });
+                } elseif ($status === 'Expired') {
+                    $query->whereNotNull('t.expiry_date_time')
+                        ->where('t.expiry_date_time', '<=', now());
+                } else {
+                    $query->where('t.status', $status);
+                }
+            })
+            ->get();
+
+        return response()->json(['data' => $tickets]); // Ensure correct JSON response
+    }
 
     public function get_data()
     {

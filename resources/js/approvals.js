@@ -29,14 +29,28 @@ $(document).ready(function () {
         startAutoRefresh();
     });
 
+    // Stop auto-refresh when the user starts typing in the search field
     $('#maintb thead input[type="text"]').on('focus input', function () {
         stopAutoRefresh();
     });
 
-    // Handle blur event to restart auto-refresh when leaving the search fields
+    // Handle blur event to conditionally restart auto-refresh when leaving the search fields
     $('#maintb thead input[type="text"]').on('blur', function () {
-        startAutoRefresh();
+        // Check if all search fields are empty
+        let allFieldsEmpty = true;
+        $('#maintb thead input[type="text"]').each(function () {
+            if ($(this).val().trim() !== '') {
+                allFieldsEmpty = false;
+                return false; // Exit the loop if any input is not empty
+            }
+        });
+
+        // Restart auto-refresh only if all search fields are empty
+        if (allFieldsEmpty) {
+            startAutoRefresh();
+        }
     });
+
 
 });
 

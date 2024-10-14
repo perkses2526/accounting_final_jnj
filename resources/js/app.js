@@ -21,22 +21,35 @@ $(document).ready(function () {
     document.getElementById('closeSidebar').onclick = function () {
         document.getElementById('mobileSidebar').classList.add('hidden');
     };
+    // Add 'active' class to clicked nav item and remove from others
+    // Add 'active' class to clicked nav item and remove from others
+    document.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', function () {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 
+    // Get the current URL of the page
     var currentUrl = window.location.href;
-    var navLinks = document.getElementsByClassName("nav-link");
+    var navLinks = document.querySelectorAll(".nav-link");
+
     for (var i = 0; i < navLinks.length; i++) {
-        var linkUrl = navLinks[i].getAttribute("href").replace('../', '');
-        if (currentUrl.includes(linkUrl)) {
-            navLinks[i].classList.add("active");
-            navLinks[i].classList.remove("collapsed");
-            var parentUl = navLinks[i].closest("ul");
-            if (parentUl && parentUl.classList.contains("collapse")) {
-                parentUl.classList.add("show");
-                parentUl.previousElementSibling.classList.remove("collapsed");
-            }
-            break;
+        // Get the href attribute from the nav-link
+        var linkUrl = navLinks[i].getAttribute("href");
+
+        // Check if the current URL starts with the link URL (more accurate than includes)
+        if (linkUrl && currentUrl.startsWith(linkUrl)) {
+            // Add the Tailwind active class to the current link
+            navLinks[i].classList.add("bg-gray-200"); // Tailwind class to style the active link
+            break; // Exit the loop once the active link is found and highlighted
         }
     }
+
+
+
+
+
 
     window.setselect = async function (sel) {
         if ($(sel).length) {

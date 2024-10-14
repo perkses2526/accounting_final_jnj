@@ -17,7 +17,7 @@
     </a>
 
     <nav>
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('dashboard') }}">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -27,7 +27,7 @@
             <span class="mx-4 font-medium text-black-800">Dashboard</span>
         </a>
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('approval_list.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -36,7 +36,7 @@
             <span class="mx-4 font-medium text-black-800">Approval List</span>
         </a>
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('accounting.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                 <path fill="currentColor"
@@ -45,7 +45,7 @@
             <span class="mx-4 font-medium text-black-800">Accounting Data</span>
         </a>
         @if (auth()->user()->hasRole('superadmin'))
-            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('roles.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
                     <path fill="currentColor"
@@ -54,7 +54,7 @@
                 <span class="mx-4 font-medium text-black-800">Roles</span>
             </a>
 
-            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('permission.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
                     <path fill="currentColor"
@@ -64,7 +64,7 @@
             </a>
         @endif
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('user_list.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
                 <path fill="currentColor"
@@ -89,7 +89,7 @@
         </button>
     </div>
     <nav class="flex-1 overflow-y-auto">
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('dashboard') }}">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -99,7 +99,7 @@
             <span class="mx-4 font-medium text-black-800">Dashboard</span>
         </a>
 
-        <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+        <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
             href="{{ route('approval_list.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -109,7 +109,7 @@
         </a>
 
         @if (auth()->user()->hasRole('superadmin'))
-            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('roles.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
                     <path fill="currentColor"
@@ -118,7 +118,7 @@
                 <span class="mx-4 font-medium text-black-800">Roles</span>
             </a>
 
-            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('permission.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
                     <path fill="currentColor"
@@ -128,7 +128,7 @@
             </a>
         @endif
         @if (auth()->user()->hasRole('superadmin') || auth()->user()->hasRole('admin'))
-            <a class="flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            <a class="nav-link flex items-center px-3 py-1 mt-4 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 href="{{ route('user_list.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 2048 2048">
                     <path fill="currentColor"

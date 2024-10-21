@@ -16,6 +16,21 @@ class AccountingController extends Controller
         }
     }
 
+    public function get_accounting_data()
+    {
+        $accountData = DB::table('accounting_data')
+            ->select('accounting_data.company_code', 'accounting_data.division_code', 'accounting_data.department_code', 'accounting_data.date_entered', 'transaction_lists.transaction_name', 'accounting_data.charts_of_accounts', 'accounting_data.class', 'accounting_data.sub_class', 'accounting_data.debit', 'accounting_data.credit', 'accounting_data.currency', 'accounting_data.posting_month', 'accounting_data.remarks')
+            ->join('transaction_lists', 'transaction_lists.id', '=', 'accounting_data.source')
+            ->get();
+
+        return response()->json(['data' => $accountData]); 
+    }
+
+    public function accounting_data()
+    {
+        return view('accounting.accounting_data');
+    }
+
     public function get_account_data($company_code, $division_code, $department_code)
     {
         $accountData = DB::table('accounting_data as a')

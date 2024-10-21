@@ -56,10 +56,20 @@ class AccountingDataFactory extends Factory
             'expense' => ['direct_expense', 'indirect_expense', 'administrative_expense', 'financial_expense']
         ];
 
-        // Randomly select a class
-        $class = $this->faker->randomElement(array_keys($classToSubClassMapping));
+        // Generate consistent company, division, and department combinations
+        $companyData = [
+            'COMP_ABC' => ['division' => 'DIV_ABC', 'department' => 'DEPT_ABC'],
+            'COMP_XYZ' => ['division' => 'DIV_XYZ', 'department' => 'DEPT_XYZ'],
+            'COMP_BCD' => ['division' => 'DIV_BCD', 'department' => 'DEPT_BCD']
+        ];
 
-        // Get the relevant subclasses for the selected class
+        // Randomly select a company and get its corresponding division and department
+        $companyCode = $this->faker->randomElement(array_keys($companyData));
+        $divisionCode = $companyData[$companyCode]['division'];
+        $departmentCode = $companyData[$companyCode]['department'];
+
+        // Randomly select a class and get its relevant subclass
+        $class = $this->faker->randomElement(array_keys($classToSubClassMapping));
         $subClass = $this->faker->randomElement($classToSubClassMapping[$class]);
 
         // Generate the date entered after January 1st of the current year and before today
@@ -70,9 +80,9 @@ class AccountingDataFactory extends Factory
         $amount = $this->faker->randomFloat(2, 0, 10000); // Generate a random amount
 
         return [
-            'company_code' => $this->faker->randomElement(['COMP_ABC', 'COMP_XYZ', 'COMP_BCD']),
-            'division_code' => $this->faker->randomElement(['DIV_ABC', 'DIV_XYZ', 'DIV_BCD']),
-            'department_code' => $this->faker->randomElement(['DEPT_ABC', 'DEPT_XYZ', 'DEPT_BCD']),
+            'company_code' => $companyCode,
+            'division_code' => $divisionCode,
+            'department_code' => $departmentCode,
             'date_entered' => $dateEntered,
             'source' => $this->faker->numberBetween(1, 3), // Assuming there are 3 transaction lists
             'charts_of_accounts' => $this->faker->randomElement($chartsOfAccounts),

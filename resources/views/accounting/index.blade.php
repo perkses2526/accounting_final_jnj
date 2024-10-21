@@ -44,22 +44,62 @@
             </div>
 
             <!-- Balance Sheet Tab Content -->
+            <!-- Balance Sheet Tab Content -->
             <div id="balance-sheet" class="tab-content mt-4">
                 <h2 class="text-xl font-semibold mb-2">Balance Sheet</h2>
+
+                <!-- Assets Section -->
+                <h3 class="text-lg font-semibold mt-4">Assets</h3>
                 <table class="min-w-full border-collapse border border-gray-200">
                     <thead>
                         <tr>
                             <th class="border border-gray-200 px-4 py-2">Account</th>
                             <th class="border border-gray-200 px-4 py-2">Debit</th>
                             <th class="border border-gray-200 px-4 py-2">Credit</th>
-                            <th class="border border-gray-200 px-4 py-2">Amount</th>
                         </tr>
                     </thead>
-                    <tbody id="balance-sheet-data">
-                        <tr><td colspan="4" class="text-center">Select data first</td></tr>
+                    <tbody id="assets-data">
+                        <tr>
+                            <td colspan="3" class="text-center">Select data first</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Liabilities Section -->
+                <h3 class="text-lg font-semibold mt-4">Liabilities</h3>
+                <table class="min-w-full border-collapse border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2">Account</th>
+                            <th class="border border-gray-200 px-4 py-2">Debit</th>
+                            <th class="border border-gray-200 px-4 py-2">Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liabilities-data">
+                        <tr>
+                            <td colspan="3" class="text-center">Select data first</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Equity Section -->
+                <h3 class="text-lg font-semibold mt-4">Equity</h3>
+                <table class="min-w-full border-collapse border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2">Account</th>
+                            <th class="border border-gray-200 px-4 py-2">Debit</th>
+                            <th class="border border-gray-200 px-4 py-2">Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equity-data">
+                        <tr>
+                            <td colspan="3" class="text-center">Select data first</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
 
             <!-- Income Statement Tab Content -->
             <div id="income-statement" class="tab-content mt-4 hidden">
@@ -67,17 +107,18 @@
                 <table class="min-w-full border-collapse border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="border border-gray-200 px-4 py-2">Account</th>
-                            <th class="border border-gray-200 px-4 py-2">Debit</th>
-                            <th class="border border-gray-200 px-4 py-2">Credit</th>
+                            <th class="border border-gray-200 px-4 py-2">Revenue</th>
                             <th class="border border-gray-200 px-4 py-2">Amount</th>
                         </tr>
                     </thead>
                     <tbody id="income-statement-data">
-                        <tr><td colspan="4" class="text-center">Select data first</td></tr>
+                        <tr>
+                            <td colspan="2" class="text-center">Select data first</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
 
             <!-- Trial Balance Tab Content -->
             <div id="trial-balance" class="tab-content mt-4 hidden">
@@ -88,18 +129,16 @@
                             <th class="border border-gray-200 px-4 py-2">Account</th>
                             <th class="border border-gray-200 px-4 py-2">Debit</th>
                             <th class="border border-gray-200 px-4 py-2">Credit</th>
-                            <th class="border border-gray-200 px-4 py-2">Amount</th>
                         </tr>
                     </thead>
                     <tbody id="trial-balance-data">
-                        <tr><td colspan="4" class="text-center">Select data first</td></tr>
+                        <tr>
+                            <td colspan="3" class="text-center">Select data first</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
 
-
-
-        @vite(['resources/js/accounting_data.js'])
-    @endsection
+            @vite(['resources/js/accounting_data.js'])
+        @endsection
 </x-app-layout>

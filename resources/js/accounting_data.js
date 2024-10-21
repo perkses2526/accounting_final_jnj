@@ -55,7 +55,6 @@ window.setdept = async function (select) {
     setOption('#department_code', dept_data);
     console.log(dept_data)
 }
-
 window.setaccount_data = async function (select) {
     const company_code = $('#company_code').val();
     const division_code = $('#division_code').val();
@@ -63,30 +62,44 @@ window.setaccount_data = async function (select) {
     const account_data = await ajax(`/get_account_data/${company_code}/${division_code}/${department_code}`);
 
     // Clear existing data before adding new content
-    $('#balance-sheet-data').empty();
+    $('#assets-data').empty();
+    $('#liabilities-data').empty();
+    $('#equity-data').empty();
     $('#income-statement-data').empty();
     $('#trial-balance-data').empty();
 
     // Separate data into Balance Sheet, Income Statement, and Trial Balance categories
     account_data.forEach(item => {
-        const row = `<tr>
+        // Balance Sheet rows - segregate into Assets, Liabilities, and Equity
+        let balanceRow = `<tr>
             <td class="border px-4 py-2">${item.charts_of_accounts}</td>
             <td class="border px-4 py-2">${item.debit ? item.debit : '-'}</td>
             <td class="border px-4 py-2">${item.credit ? item.credit : '-'}</td>
-            <td class="border px-4 py-2">${item.amount}</td>
         </tr>`;
 
-        // Populate Balance Sheet
-        if (item.class === 'asset' || item.class === 'liability' || item.class === 'equity') {
-            $('#balance-sheet-data').append(row);
+        if (item.class === 'asset') {
+            $('#assets-data').append(balanceRow);
+        } else if (item.class === 'liability') {
+            $('#liabilities-data').append(balanceRow);
+        } else if (item.class === 'equity') {
+            $('#equity-data').append(balanceRow);
         }
 
-        // Populate Income Statement
-        if (item.class === 'revenue' || item.class === 'expense') {
-            $('#income-statement-data').append(row);
+        // Income Statement rows - showing only revenue accounts or earned amounts
+        if (item.class === 'revenue' || item.credit > 0) {
+            const incomeRow = `<tr>
+                <td class="border px-4 py-2">${item.charts_of_accounts}</td>
+                <td class="border px-4 py-2">${item.credit ? item.credit : '-'}</td>
+            </tr>`;
+            $('#income-statement-data').append(incomeRow);
         }
 
-        // Populate Trial Balance (Include all accounts)
-        $('#trial-balance-data').append(row);
+        // Trial Balance rows (Include all accounts)
+        const trialRow = `<tr>
+            <td class="border px-4 py-2">${item.charts_of_accounts}</td>
+            <td class="border px-4 py-2">${item.debit ? item.debit : '-'}</td>
+            <td class="border px-4 py-2">${item.credit ? item.credit : '-'}</td>
+        </tr>`;
+        $('#trial-balance-data').append(trialRow);
     });
 }

@@ -204,12 +204,13 @@ window.update_ticket = async function (btn, event) {
     var res = await ajax(`/update_ticket/${ticketId}`, formDataSerialized, 'PUT');
     if (res.status === 'success') {
         set_table('/get_data_tickets/');
-        tsuccess(`Ticket updated successfully`);
+        tsuccess(res.message); // This will now show "Ticket updated and email queued for sending"
         closeModal();
     } else {
         terror();
     }
 }
+
 
 
 window.show_ticket = async function (ticketId) {

@@ -6,6 +6,8 @@ use App\Models\Tickets;
 use App\Models\TransactionList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
 
 class TicketsController extends Controller
 {
@@ -262,29 +264,42 @@ class TicketsController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, Tickets $tickets)
     {
-        // Validate the incoming request data
         $validated = $request->validate([
             'status' => 'required|string|max:25',
-            'reason_if_denied' => 'nullable|string|max:255', // Making this field optional
+            'reason_if_denied' => 'nullable|string|max:255',
         ]);
 
-        // Add additional fields manually
         $validated['date_status_updated'] = now();
-        $validated['approved_by'] = auth()->user()->id; // Use auth() to get the currently authenticated user
+        $validated['approved_by'] = auth()->user()->id;
 
         try {
             // Update the tickets with the validated data
             $tickets->update($validated);
+            // php artisan make:mail TestEmail
+            // php artisan queue:work
 
-            // Return a success response
-            return response()->json(['status' => 'success']);
+            // Fetch the updated ticket data
+            $ticketData = DB::table('tickets as t')
+                ->select('t.*', 'tl.transaction_name', 'u.first_name', 'u.last_name')
+                ->leftJoin('users as u', 'u.id', '=', 't.approved_by')
+                ->leftJoin('transaction_lists as tl', 'tl.id', '=', 't.transaction_id')
+                ->where('t.id', $tickets->id)
+                ->first();
+
+            // Queue the email
+            // Mail::to('rjbahoyo25@gmail.com')->queue(new TestEmail($ticketData));
+
+            // Return a success response immediately
+            return response()->json(['status' => 'success', 'message' => 'Ticket updated and email queued for sending']);
         } catch (\Exception $e) {
             // Return an error response in case of failure
             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
